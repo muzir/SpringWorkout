@@ -5,4 +5,4 @@
  * @author muzir
  *
  */
-package com.springworkout.quartz.test;
+package com.springWorkout.quartz.test;

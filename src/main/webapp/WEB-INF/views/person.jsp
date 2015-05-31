@@ -15,13 +15,10 @@
 </head>
 <body>
 	<h1>Hello World!</h1>
-	<p>This is the homepage!</p>
-	<form action="${pageContext.request.contextPath}/" method="POST">
-		<label>${personA.name} Scope:Prototype </label> <input
-			name="prototypeName" type="text" class="form-control"
-			value="${personA.clickCount}" /> <label>${personB.name}
-			Scope:Singleton</label> <input name="singletonName" type="text"
-			class="form-control" value="${personB.clickCount}" />
+	<p>This is the Person page!</p>
+	<form action="${pageContext.request.contextPath}/person" method="POST">
+		<label>Person Name</label> <input name="personName" type="text"
+			class="form-control" />
 		<div>
 			<button class="btn btn-primary btn-lg">Click Count</button>
 		</div>
