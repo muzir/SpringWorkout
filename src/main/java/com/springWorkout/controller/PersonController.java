@@ -23,16 +23,13 @@ public class PersonController {
 	public ModelAndView doGet(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("person");
 		Random r = new Random();
-
 		Person p = new Person();
 		p.setId(r.nextInt());
 		p.setName("test" + r.nextInt());
 		p.setClickCount(0);
-
+		System.out.println("Person will be insert :" + p);
 		Integer pReturn = personService.savePerson(p);
-
 		System.out.println("pReturn:" + pReturn);
-		System.out.println(p);
 		return model;
 	}
 }

@@ -14,7 +14,13 @@ public class PersonDao {
 
 	public Integer savePerson(Person person) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Integer) session.save(person);
+		Integer insertedRecordCount = (Integer) session.save(person);
+		session.flush();
+		session.clear();
+		if (1 == 1) {
+			throw new RuntimeException("");
+		}
+		return insertedRecordCount;
 	}
 
 }
