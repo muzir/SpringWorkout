@@ -4,14 +4,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springWorkout.domain.Person;
 
-//@Controller
-@RequestMapping("/")
+@Controller
 public class HomeController {
 	// @Autowired
 	// @Qualifier("personA")
@@ -20,10 +20,9 @@ public class HomeController {
 	// @Qualifier("personB")
 	// private Person personB;
 
-	ApplicationContext beans = new ClassPathXmlApplicationContext(
-			"classpath:/beans.xml");
+	ApplicationContext beans = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView get(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("home");
 		Person personA = (Person) beans.getBean("personA");
@@ -33,7 +32,7 @@ public class HomeController {
 		return model;
 	}
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ModelAndView post(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("home");
 		Person personA = (Person) beans.getBean("personA");

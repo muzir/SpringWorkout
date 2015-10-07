@@ -1,4 +1,4 @@
-package com.springWorkout.quartz.test;
+package com.springWorkout.quartz;
 
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
