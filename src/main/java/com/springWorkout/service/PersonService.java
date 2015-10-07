@@ -17,4 +17,8 @@ public class PersonService {
 	public Integer savePerson(Person person) {
 		return personDao.savePerson(person);
 	}
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public Integer savePersonWait(Person person) {
+		return personDao.savePerson(person);
+	}
 }

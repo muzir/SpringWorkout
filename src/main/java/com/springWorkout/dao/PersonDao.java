@@ -17,9 +17,6 @@ public class PersonDao {
 		Integer insertedRecordCount = (Integer) session.save(person);
 		session.flush();
 		session.clear();
-		if (1 == 1) {
-			throw new RuntimeException("");
-		}
 		return insertedRecordCount;
 	}
 

@@ -1,6 +1,6 @@
 package com.springWorkout.controller;
 
-import java.util.Random;
+import java.security.SecureRandom;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,16 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springWorkout.domain.Person;
 import com.springWorkout.service.PersonService;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 @Controller
-@RequestMapping("/person")
 public class PersonController {
 	@Autowired
 	public PersonService personService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/person", method = RequestMethod.GET)
 	public ModelAndView doGet(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView("person");
-		Random r = new Random();
+		ModelAndView model = new ModelAndView("result");
+		SecureRandom r = new SecureRandom();
 		Person p = new Person();
 		p.setId(r.nextInt());
 		p.setName("test" + r.nextInt());
@@ -30,6 +33,37 @@ public class PersonController {
 		System.out.println("Person will be insert :" + p);
 		Integer pReturn = personService.savePerson(p);
 		System.out.println("pReturn:" + pReturn);
+		model.addObject("response", "00");
+		return model;
+	}
+
+	@RequestMapping(value = "/personOne", method = RequestMethod.GET)
+	public ModelAndView doGetOne(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("result");
+		SecureRandom r = new SecureRandom();
+		Person p = new Person();
+		p.setId(r.nextInt());
+		p.setName("test" + r.nextInt());
+		p.setClickCount(0);
+		System.out.println("Person will be insert :" + p);
+		Integer pReturn = personService.savePerson(p);
+		System.out.println("pReturn:" + pReturn);
+		model.addObject("response", "00");
+		return model;
+	}
+
+	@RequestMapping(value = "/personTwo", method = RequestMethod.GET)
+	public ModelAndView doGetTwo(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("result");
+		SecureRandom r = new SecureRandom();
+		Person p = new Person();
+		p.setId(r.nextInt());
+		p.setName("test" + r.nextInt());
+		p.setClickCount(0);
+		System.out.println("Person will be insert :" + p);
+		Integer pReturn = personService.savePerson(p);
+		System.out.println("pReturn:" + pReturn);
+		model.addObject("response", "00");
 		return model;
 	}
 }
