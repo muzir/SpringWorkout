@@ -18,30 +18,27 @@ public class SpringWorkoutSmartLifeCycle implements SmartLifecycle {
 
 	@Override
 	public void start() {
-		// try {
-		// SchedulerFactory schedFact = new
-		// org.quartz.impl.StdSchedulerFactory();
-		// sched = schedFact.getScheduler();
-		//
-		// sched.start();
-		//
-		// // define the job and tie it to our LogConnectionPool class
-		// JobDetail jobDetail = newJob(LogConnectionPool.class)
-		// .withIdentity("LogConnectionPool", "groupLogConnectionPool").build();
-		//
-		// // Trigger the job to run now, and then every 40 seconds
-		// SimpleTrigger trigger =
-		// newTrigger().withIdentity("LogConnectionPoolTrigger",
-		// "groupLogConnectionPool")
-		// .startNow().withSchedule(simpleSchedule().withIntervalInSeconds(10).repeatForever()).build();
-		//
-		// // Tell quartz to schedule the job using our trigger
-		// sched.scheduleJob(jobDetail, trigger);
-		//
-		// } catch (SchedulerException se) {
-		// se.printStackTrace();
-		// }
-		// ;
+		try {
+			SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
+			sched = schedFact.getScheduler();
+
+			sched.start();
+
+			// define the job and tie it to our LogConnectionPool class
+			JobDetail jobDetail = newJob(LogConnectionPool.class)
+					.withIdentity("LogConnectionPool", "groupLogConnectionPool").build();
+
+			// Trigger the job to run now, and then every 40 seconds
+			SimpleTrigger trigger = newTrigger().withIdentity("LogConnectionPoolTrigger", "groupLogConnectionPool")
+					.startNow().withSchedule(simpleSchedule().withIntervalInSeconds(10).repeatForever()).build();
+
+			// Tell quartz to schedule the job using our trigger
+			sched.scheduleJob(jobDetail, trigger);
+
+		} catch (SchedulerException se) {
+			se.printStackTrace();
+		}
+		;
 	}
 
 	@Override

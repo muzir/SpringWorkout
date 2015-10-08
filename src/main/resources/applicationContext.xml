@@ -34,7 +34,7 @@ http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 		<property name="minIdle" value="0"></property>
 		<property name="maxWait" value="5000"></property>
 		<property name="testWhileIdle" value="true"></property>
-		<property name="validationQuery" value="SELECT 'msu' AS msu FROM dual"></property>
+		<property name="validationQuery" value="SELECT 1"></property>
 		<property name="timeBetweenEvictionRunsMillis" value="60000"></property>
 		<property name="minEvictableIdleTimeMillis" value="600000"></property>
 		<property name="logAbandoned" value="true" />

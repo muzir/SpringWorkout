@@ -30,9 +30,9 @@ public class PersonController {
 		p.setId(r.nextInt());
 		p.setName("test" + r.nextInt());
 		p.setClickCount(0);
-		System.out.println("Person will be insert :" + p);
-		Integer pReturn = personService.savePerson(p);
-		System.out.println("pReturn:" + pReturn);
+		// System.out.println("Person will be insert :" + p);
+		// Integer pReturn = personService.savePerson(p);
+		// System.out.println("pReturn:" + pReturn);
 		model.addObject("response", "00");
 		return model;
 	}
@@ -45,9 +45,9 @@ public class PersonController {
 		p.setId(r.nextInt());
 		p.setName("test" + r.nextInt());
 		p.setClickCount(0);
-		System.out.println("Person will be insert :" + p);
-		Integer pReturn = personService.savePerson(p);
-		System.out.println("pReturn:" + pReturn);
+		// System.out.println("Person will be insert :" + p);
+		// Integer pReturn = personService.savePerson(p);
+		// System.out.println("pReturn:" + pReturn);
 		model.addObject("response", "00");
 		return model;
 	}
@@ -60,9 +60,9 @@ public class PersonController {
 		p.setId(r.nextInt());
 		p.setName("test" + r.nextInt());
 		p.setClickCount(0);
-		System.out.println("Person will be insert :" + p);
-		Integer pReturn = personService.savePerson(p);
-		System.out.println("pReturn:" + pReturn);
+		// System.out.println("Person will be insert :" + p);
+		// Integer pReturn = personService.savePerson(p);
+		// System.out.println("pReturn:" + pReturn);
 		model.addObject("response", "00");
 		return model;
 	}

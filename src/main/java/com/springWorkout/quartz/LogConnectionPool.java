@@ -24,10 +24,10 @@ public class LogConnectionPool implements Job {
 		springInjectQuartzJobBean.injectQuartzJobToSpringApplicationContext(this);
 		try {
 			StringBuilder sb = new StringBuilder();
-			sb.append("\nds_InitialSize : " + dataSource.getInitialSize());
-			sb.append("\nds_MaxActive :" + dataSource.getMaxActive());
-			sb.append("\nds_MaxIdle :" + dataSource.getMaxIdle());
-			sb.append("\nds_MinIdle :" + dataSource.getMinIdle());
+			// sb.append("\nds_InitialSize : " + dataSource.getInitialSize());
+			// sb.append("\nds_MaxActive :" + dataSource.getMaxActive());
+			// sb.append("\nds_MaxIdle :" + dataSource.getMaxIdle());
+			// sb.append("\nds_MinIdle :" + dataSource.getMinIdle());
 			// sb.append("\nds_MaxWait :" + dataSource.getMaxWait());
 			// sb.append("\nds_TestOnBorrow :" + dataSource.isTestOnBorrow());
 			// sb.append("\nds_TestOnReturn :" + dataSource.isTestOnReturn());
@@ -41,8 +41,8 @@ public class LogConnectionPool implements Job {
 			// dataSource.isRemoveAbandoned());
 			// sb.append("\nds_RemoveAbandonedTimeout" +
 			// dataSource.getRemoveAbandonedTimeout());
-			sb.append("\nds_NumActive" + dataSource.getNumActive());
-			sb.append("\nds_NumIdle" + dataSource.getNumIdle());
+			sb.append("\nds_NumActive : " + dataSource.getNumActive());
+			sb.append("\nds_NumIdle : " + dataSource.getNumIdle());
 			System.out.println("\n\n\nLog : " + sb.toString());
 		} catch (Throwable e) {
 			e.printStackTrace();
