@@ -22,7 +22,7 @@ public class PersonController {
 	@Autowired
 	public PersonService personService;
 
-	@RequestMapping(value = "/person", method = RequestMethod.GET)
+	@RequestMapping(value = "app/person", method = RequestMethod.GET)
 	public ModelAndView doGet(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("result");
 		SecureRandom r = new SecureRandom();
@@ -37,7 +37,7 @@ public class PersonController {
 		return model;
 	}
 
-	@RequestMapping(value = "/personOne", method = RequestMethod.GET)
+	@RequestMapping(value = "app/personOne", method = RequestMethod.GET)
 	public ModelAndView doGetOne(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("result");
 		SecureRandom r = new SecureRandom();
@@ -52,7 +52,7 @@ public class PersonController {
 		return model;
 	}
 
-	@RequestMapping(value = "/personTwo", method = RequestMethod.GET)
+	@RequestMapping(value = "app/personTwo", method = RequestMethod.GET)
 	public ModelAndView doGetTwo(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("result");
 		SecureRandom r = new SecureRandom();

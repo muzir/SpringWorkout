@@ -16,11 +16,11 @@ http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 	<bean id="personB" scope="singleton" class="com.springWorkout.domain.Person">
 		<property name="name" value="PersonB"></property>
 	</bean>
+	
 
 	<context:component-scan base-package="com.springWorkout.dao"></context:component-scan>
 	<context:component-scan base-package="com.springWorkout.service"></context:component-scan>
-	<context:component-scan base-package="com.springWorkout.controller"></context:component-scan>
-
+	<!-- <context:component-scan base-package="com.springWorkout.controller"></context:component-scan> -->
 	<!-- See http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html for details -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
 		destroy-method="close">
