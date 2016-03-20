@@ -1,5 +1,8 @@
 package com.springWorkout.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +15,15 @@ public class PersonDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public Integer savePerson(Person person) {
+	public void savePerson(Person person) {
 		Session session = sessionFactory.getCurrentSession();
-		return (Integer) session.save(person);
+		session.save(person);
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Person> getPersons() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Person.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
 
 }

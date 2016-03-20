@@ -1,20 +1,13 @@
 package com.springWorkout.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
-import com.springWorkout.dao.PersonDao;
 import com.springWorkout.domain.Person;
 
-@Service
-public class PersonService {
-	@Autowired
-	private PersonDao personDao;
-
-	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-	public Integer savePerson(Person person) {
-		return personDao.savePerson(person);
-	}
+public interface PersonService {
+	Person getPerson(String id);
+	void savePerson(Person person);
+	void updatePerson(String id);
+	void deletePerson(String id);
+	List<Person> getAllPerson();
 }

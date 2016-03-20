@@ -1,5 +1,6 @@
 package com.springWorkout.controller;
 
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,16 +23,21 @@ public class PersonController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView doGet(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("person");
+		List<Person> persons = personService.getAllPerson();
+		model.addObject("persons", persons);
+		return model;
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ModelAndView doPost(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView("redirect:/person");
+		String personName = request.getParameter("personName");
 		Random r = new Random();
-
 		Person p = new Person();
-		p.setId(r.nextInt());
-		p.setName("test" + r.nextInt());
+		p.setId(String.valueOf(r.nextInt()));
+		p.setName(personName);
 		p.setClickCount(0);
-
-		Integer pReturn = personService.savePerson(p);
-
-		System.out.println("pReturn:" + pReturn);
+		personService.savePerson(p);
 		System.out.println(p);
 		return model;
 	}

@@ -14,6 +14,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<spring.version>4.1.3.RELEASE</spring.version>
+		<log4j.version>2.5</log4j.version>
 	</properties>
 
 	<dependencies>
@@ -26,6 +27,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- Quartz Spec -->
@@ -76,6 +82,31 @@
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
+		</dependency>
+		<!-- Log4j2 core impl -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- Commons Logging adapter - redirects Commons Logging calls to log4j2 
+			(Spring uses Commons Logging) -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-jcl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- SLF4j adapter - redirects slf4j calls to log4j2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<!-- Used by Hibernate, redirects logs to log4j2 -->
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.2.0.Final</version>
 		</dependency>
 	</dependencies>
 

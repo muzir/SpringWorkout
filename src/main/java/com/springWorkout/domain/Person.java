@@ -7,16 +7,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "BR_Person")
 public class Person {
+	@Id
+	private String id;
 	private String name;
 	private int clickCount;
-	@Id
-	private int id;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -41,7 +41,7 @@ public class Person {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + clickCount;
-		result = prime * result + id;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
 	}
@@ -57,7 +57,10 @@ public class Person {
 		Person other = (Person) obj;
 		if (clickCount != other.clickCount)
 			return false;
-		if (id != other.id)
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
 			return false;
 		if (name == null) {
 			if (other.name != null)
@@ -69,8 +72,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", clickCount=" + clickCount + ", id="
-				+ id + "]";
+		return "Person [name=" + name + ", clickCount=" + clickCount + ", id=" + id + "]";
 	}
 
 }
