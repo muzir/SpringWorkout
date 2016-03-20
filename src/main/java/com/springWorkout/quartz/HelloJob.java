@@ -1,4 +1,4 @@
-package com.springWorkout.quartz.test;
+package com.springWorkout.quartz;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

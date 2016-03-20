@@ -20,18 +20,32 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<bean id="personB" scope="singleton" class="com.springWorkout.domain.Person">
 		<property name="name" value="PersonB"></property>
 	</bean>
+	
 
 	<context:component-scan base-package="com.springWorkout.dao"></context:component-scan>
 	<context:component-scan base-package="com.springWorkout.service"></context:component-scan>
-	<context:component-scan base-package="com.springWorkout.controller"></context:component-scan>
-
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.userName}" />
-		<property name="password" value="${jdbc.password}" />
-		<property name="initialSize" value="5" />
-		<property name="maxActive" value="10" />
+	<!-- <context:component-scan base-package="com.springWorkout.controller"></context:component-scan> -->
+	<!-- See http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html for details -->
+	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="username" value="${jdbc.userName}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="initialSize" value="0"></property>
+		<property name="maxActive" value="20"></property>
+		<property name="maxIdle" value="3"></property>
+		<property name="minIdle" value="0"></property>
+		<property name="maxWait" value="5000"></property>
+		<property name="testWhileIdle" value="true"></property>
+		<property name="validationQuery" value="SELECT 1"></property>
+		<property name="timeBetweenEvictionRunsMillis" value="60000"></property>
+		<property name="minEvictableIdleTimeMillis" value="600000"></property>
+		<property name="logAbandoned" value="true" />
+		<property name="removeAbandoned" value="true" />
+		<property name="removeAbandonedTimeout" value="300" />
+		<property name="validationInterval" value="300000" />
+		<property name="maxAge" value="3600000" />
 	</bean>
 	<context:property-placeholder location="classpath:/database.properties" />
 
@@ -54,7 +68,6 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
 	<tx:annotation-driven />
 
 	<!-- Settings -->
