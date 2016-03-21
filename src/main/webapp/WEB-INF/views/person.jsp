@@ -5,7 +5,6 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -13,7 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<title>Home</title>
+<title>Spring Transaction Test Page</title>
 </head>
 <body>
 	<div class="container">
@@ -23,26 +22,35 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>TC No</th>
 					<th>Name</th>
-					<th>ClickCount</th>
+					<th>Surname</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="person" items="${persons}">
 					<tr>
-						<td>${person.id}</td>
+						<td>${person.tckNo}</td>
 						<td>${person.name}</td>
-						<td>${person.clickCount}</td>
+						<td>${person.surname}</td>
+						<td><a
+							href="${pageContext.request.contextPath}//person/update/${person.id}">Update
+								Person</a><br>
+						<a
+							href="${pageContext.request.contextPath}//person/delete/${person.id}">Delete
+								Person</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<form action="${pageContext.request.contextPath}/person" method="POST">
-			<label>Person Name</label> <input name="personName" type="text"
-				class="form-control" />
+			<label>TCK No : </label> <input name="tckNo" type="text"
+				class="form-control" /> <label>Person Name : </label> <input
+				name="name" type="text" class="form-control" /> <label>Person
+				Surname : </label> <input name="surname" type="text" class="form-control" />
 			<div>
-				<button class="b	tn btn-primary btn-lg">Click Count</button>
+				<button class="b	tn btn-primary btn-lg">Create Person</button>
 			</div>
 		</form>
 	</div>

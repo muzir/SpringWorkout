@@ -34,12 +34,12 @@ public class PersonController {
 	@RequestMapping(value = "/person", method = RequestMethod.POST)
 	public ModelAndView doPost(HttpServletRequest request) {
 		ModelAndView model = new ModelAndView("redirect:/person");
-		String personName = request.getParameter("personName");
 		SecureRandom r = new SecureRandom();
-		Person p = new Person();
-		p.setId(String.valueOf(r.nextInt()));
-		p.setName(personName);
-		p.setClickCount(0);
+		String personId = String.valueOf(r.nextInt());
+		String name = request.getParameter("name");
+		String surname = request.getParameter("surname");
+		String tckNo = request.getParameter("tckNo");
+		Person p = new Person.Builder().id(personId).name(name).surname(surname).tckNo(tckNo).build();
 		personService.savePerson(p);
 		System.out.println(p);
 		return model;
