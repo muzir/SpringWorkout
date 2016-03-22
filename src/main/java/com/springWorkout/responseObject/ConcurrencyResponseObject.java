@@ -8,6 +8,15 @@ public class ConcurrencyResponseObject extends ResponseObject {
 	private String personName;
 	private String personSurname;
 	private String tckNo;
+	private String requestId;
+
+	public String getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(String requestId) {
+		this.requestId = requestId;
+	}
 
 	public String getPersonName() {
 		return personName;
@@ -36,9 +45,10 @@ public class ConcurrencyResponseObject extends ResponseObject {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((personName == null) ? 0 : personName.hashCode());
 		result = prime * result + ((personSurname == null) ? 0 : personSurname.hashCode());
+		result = prime * result + ((requestId == null) ? 0 : requestId.hashCode());
 		result = prime * result + ((tckNo == null) ? 0 : tckNo.hashCode());
 		return result;
 	}
@@ -47,7 +57,7 @@ public class ConcurrencyResponseObject extends ResponseObject {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -62,6 +72,11 @@ public class ConcurrencyResponseObject extends ResponseObject {
 				return false;
 		} else if (!personSurname.equals(other.personSurname))
 			return false;
+		if (requestId == null) {
+			if (other.requestId != null)
+				return false;
+		} else if (!requestId.equals(other.requestId))
+			return false;
 		if (tckNo == null) {
 			if (other.tckNo != null)
 				return false;
@@ -73,7 +88,7 @@ public class ConcurrencyResponseObject extends ResponseObject {
 	@Override
 	public String toString() {
 		return "ConcurrencyResponseObject [personName=" + personName + ", personSurname=" + personSurname + ", tckNo="
-				+ tckNo + "]";
+				+ tckNo + ", requestId=" + requestId + "]";
 	}
 
 }

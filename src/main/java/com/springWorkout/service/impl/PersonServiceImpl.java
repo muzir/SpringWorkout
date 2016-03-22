@@ -9,6 +9,10 @@ import com.springWorkout.dao.PersonDao;
 import com.springWorkout.domain.Person;
 import com.springWorkout.service.PersonService;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 @Service
 public class PersonServiceImpl implements PersonService {
 

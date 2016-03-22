@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 import com.springWorkout.domain.Person;
 import com.springWorkout.responseObject.ConcurrencyResponseObject;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 @Component
 public class ThirdPartyServiceFactory {
 	@Autowired
@@ -17,13 +21,14 @@ public class ThirdPartyServiceFactory {
 			return thirdPartyService;
 		}
 		return NO_OPERATION_INSTANCE;
-	} 
+	}
 
 	private ThirdPartyService NO_OPERATION_INSTANCE = new ThirdPartyService() {
 
 		@Override
-		public void injectPersonDataToResponse(ConcurrencyResponseObject concurrencyResponseObject, Person person) {
-			
+		public void injectPersonDataToResponse(ConcurrencyResponseObject concurrencyResponseObject, Person person,
+				String requestId) {
+			System.out.println("requestId:" + requestId);
 		}
 
 	};

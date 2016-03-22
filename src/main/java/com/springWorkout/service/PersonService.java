@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.springWorkout.domain.Person;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 public interface PersonService {
 	Person getPerson(String id);
 

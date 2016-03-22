@@ -14,6 +14,10 @@ import com.springWorkout.responseObject.ConcurrencyResponseObject;
 import com.springWorkout.service.ThirdPartyService;
 import com.springWorkout.service.ThirdPartyServiceFactory;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 @Controller
 @RequestMapping(value = "concurrency")
 public class ConcurrenceController {
@@ -25,6 +29,7 @@ public class ConcurrenceController {
 
 	@ResponseBody
 	public ConcurrencyResponseObject doPost(HttpServletRequest request) {
+		/** TODO Create request Log and write to DB */
 		String isThirdPartyApiCall = request.getParameter("thirdPartApiCall");
 		String requestId = request.getParameter("requestId");
 		SecureRandom sr = new SecureRandom();
@@ -33,9 +38,11 @@ public class ConcurrenceController {
 				.surname("surname" + personId).tckNo("").build();
 		ConcurrencyResponseObject concurrencyResponseObject = new ConcurrencyResponseObject();
 		thirdPartyService = thirdPartyServiceFactory.getThirdPartyService(isThirdPartyApiCall);
-		thirdPartyService.injectPersonDataToResponse(concurrencyResponseObject, person);
+		thirdPartyService.injectPersonDataToResponse(concurrencyResponseObject, person, requestId);
+		concurrencyResponseObject.setRequestId(requestId);
 		concurrencyResponseObject.setResponseCode("00");
-		concurrencyResponseObject.setResponseMessage("Sucessfull");
+		concurrencyResponseObject.setResponseMessage("Sucessfully");
+		/** TODO Create Response Log write to DB */
 		return concurrencyResponseObject;
 	}
 }

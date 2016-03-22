@@ -10,6 +10,10 @@ import org.springframework.stereotype.Repository;
 
 import com.springWorkout.domain.Person;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 @Repository
 public class PersonDao {
 	@Autowired

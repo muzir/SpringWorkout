@@ -1,5 +1,9 @@
 package com.springWorkout.responseObject;
 
+/**
+ * @author erhun.baycelik
+ *
+ */
 public class ResponseObject {
 	private String responseCode;
 	private String responseMessage;
