@@ -17,7 +17,7 @@ public class ThirdPartyServiceFactory {
 			return thirdPartyService;
 		}
 		return NO_OPERATION_INSTANCE;
-	}
+	} 
 
 	private ThirdPartyService NO_OPERATION_INSTANCE = new ThirdPartyService() {
 
