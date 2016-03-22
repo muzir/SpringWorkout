@@ -35,16 +35,16 @@
 						<td>${person.name}</td>
 						<td>${person.surname}</td>
 						<td><a
-							href="${pageContext.request.contextPath}//person/update/${person.id}">Update
+							href="${pageContext.request.contextPath}/transaction/update/${person.id}">Update
 								Person</a><br>
 						<a
-							href="${pageContext.request.contextPath}//person/delete/${person.id}">Delete
+							href="${pageContext.request.contextPath}/transaction/delete/${person.id}">Delete
 								Person</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<form action="${pageContext.request.contextPath}/person" method="POST">
+		<form action="${pageContext.request.contextPath}/transaction" method="POST">
 			<label>TCK No : </label> <input name="tckNo" type="text"
 				class="form-control" /> <label>Person Name : </label> <input
 				name="name" type="text" class="form-control" /> <label>Person
