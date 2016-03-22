@@ -81,7 +81,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 				<!-- update: update the schema. -->
 				<!-- create: creates the schema, destroying previous data. -->
 				<!-- create-drop: drop the schema at the end of the session. -->
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 				<prop key="show_sql">false</prop>
 				<prop key="hibernate.validator.autoregister_listeners">true</prop>
 			</props>
