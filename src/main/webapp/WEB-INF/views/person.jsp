@@ -5,6 +5,7 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -36,15 +37,15 @@
 						<td>${person.surname}</td>
 						<td><a
 							href="${pageContext.request.contextPath}/transaction/update/${person.id}">Update
-								Person</a><br>
-						<a
+								Person</a><br> <a
 							href="${pageContext.request.contextPath}/transaction/delete/${person.id}">Delete
 								Person</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<form action="${pageContext.request.contextPath}/transaction" method="POST">
+		<form action="${pageContext.request.contextPath}/transaction"
+			method="POST">
 			<label>TCK No : </label> <input name="tckNo" type="text"
 				class="form-control" /> <label>Person Name : </label> <input
 				name="name" type="text" class="form-control" /> <label>Person

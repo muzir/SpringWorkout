@@ -8,17 +8,16 @@ http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+	<context:component-scan base-package="com.springWorkout.controller"></context:component-scan>
 	<!-- mvc:resoure tag is used to easy load for images or static content -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:default-servlet-handler />
 	<!-- Activate to Spring MVC annotion like @RequestMapping or @Controller -->
 	<mvc:annotation-driven />
+	<context:annotation-config />
 	<!-- JstlView dispatches the request to JSP, just like InternalResourceView. 
 		But it also exposes JSTL-specific request attributes so that you can take 
 		advantage of JSTL’s internationalization support. -->
-	<context:annotation-config />
-	<!-- <bean id="springWorkoutSmartLifeCycle" class="com.springWorkout.service.SpringWorkoutSmartLifeCycle"></bean> -->
-	<context:component-scan base-package="com.springWorkout.controller" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
