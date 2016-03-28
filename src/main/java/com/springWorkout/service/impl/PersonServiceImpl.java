@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springWorkout.dao.PersonDao;
+import com.springWorkout.domain.ApiLog;
 import com.springWorkout.domain.Person;
+import com.springWorkout.service.ApiLogService;
 import com.springWorkout.service.PersonService;
 
 /**
@@ -15,7 +17,8 @@ import com.springWorkout.service.PersonService;
  */
 @Service
 public class PersonServiceImpl implements PersonService {
-
+	@Autowired
+	private ApiLogService apiLogService;
 	@Autowired
 	private PersonDao personDao;
 
@@ -25,20 +28,23 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void savePerson(Person person) {
+	public void savePerson(Person person, String requestString) {
+		ApiLog apiLog = apiLogService.saveApiRequest(requestString);
 		personDao.savePerson(person);
+		apiLogService.saveApiResponse(apiLog, person.toString());
 	}
 
 	@Override
 	public void updatePerson(String id) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void deletePerson(String id) {
-		// TODO Auto-generated method stub
-
+		Person p = new Person.Builder().id(id).build();
+		ApiLog apiLog = apiLogService.saveApiRequest(id);
+		personDao.delete(p);
+		apiLogService.saveApiResponse(apiLog, p.toString());
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import com.springWorkout.domain.Person;
 public interface PersonService {
 	Person getPerson(String id);
 
-	void savePerson(Person person);
+	void savePerson(Person person, String requestString);
 
 	void updatePerson(String id);
 

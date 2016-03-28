@@ -47,13 +47,15 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<tx:advice id="txAdvicePerson">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" read-only="false" />
+			<tx:method name="save*" read-only="false" propagation="REQUIRES_NEW" />
+			<tx:method name="delete*" read-only="false" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
 	<tx:advice id="txAdviceApiLog">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
-			<tx:method name="*" read-only="false" />
+			<tx:method name="save*" read-only="false"
+				rollback-for="IllegalArgumentException" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>

@@ -20,6 +20,9 @@ public class ApiLogServiceImpl implements ApiLogService {
 	private ApiLogDao apiLogDao;
 
 	public ApiLog saveApiRequest(String request) {
+		if(request.contains("erhun")){
+			throw new IllegalArgumentException();
+		}
 		SecureRandom r = new SecureRandom();
 		String apiLogId = String.valueOf(r.nextInt());
 		ApiLog apiLog = new ApiLog.Builder().id(apiLogId).request(request).requestDate(new Date()).build();

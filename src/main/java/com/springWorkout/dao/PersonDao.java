@@ -29,4 +29,10 @@ public class PersonDao {
 		Session session = sessionFactory.getCurrentSession();
 		return session.createCriteria(Person.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
 	}
+
+	public void delete(Person person) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(person);
+
+	}
 }

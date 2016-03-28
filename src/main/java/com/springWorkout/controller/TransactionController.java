@@ -7,13 +7,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springWorkout.domain.ApiLog;
 import com.springWorkout.domain.Person;
-import com.springWorkout.service.ApiLogService;
 import com.springWorkout.service.ApiUtilService;
 import com.springWorkout.service.PersonService;
 
@@ -26,8 +25,6 @@ import com.springWorkout.service.PersonService;
 public class TransactionController {
 	@Autowired
 	private PersonService personService;
-	@Autowired
-	private ApiLogService apiLogService;
 	@Autowired
 	private ApiUtilService apiUtilService;
 
@@ -49,10 +46,14 @@ public class TransactionController {
 		String tckNo = request.getParameter("tckNo");
 		Person p = new Person.Builder().id(personId).name(name).surname(surname).tckNo(tckNo).build();
 		String requestString = apiUtilService.getRequestString(request);
-		ApiLog apiLog = apiLogService.saveApiRequest(requestString);
-		personService.savePerson(p);
-		apiLogService.saveApiResponse(apiLog, p.toString());
-		System.out.println(p);
+		personService.savePerson(p, requestString);
+		return model;
+	}
+
+	@RequestMapping(value = "/delete/{personId}", method = RequestMethod.GET)
+	public ModelAndView deletePerson(HttpServletRequest request, @PathVariable String personId) {
+		ModelAndView model = new ModelAndView("redirect:/transaction");
+		personService.deletePerson(personId);
 		return model;
 	}
 }
