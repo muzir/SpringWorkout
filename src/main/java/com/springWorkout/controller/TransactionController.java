@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springWorkout.domain.Person;
+import com.springWorkout.exceptions.InvalidApiResponseException;
 import com.springWorkout.service.ApiUtilService;
 import com.springWorkout.service.PersonService;
 
@@ -37,7 +38,7 @@ public class TransactionController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView doPost(HttpServletRequest request) {
+	public ModelAndView doPost(HttpServletRequest request) throws InvalidApiResponseException {
 		ModelAndView model = new ModelAndView("redirect:/transaction");
 		SecureRandom r = new SecureRandom();
 		String personId = String.valueOf(r.nextInt());
@@ -51,7 +52,7 @@ public class TransactionController {
 	}
 
 	@RequestMapping(value = "/delete/{personId}", method = RequestMethod.GET)
-	public ModelAndView deletePerson(HttpServletRequest request, @PathVariable String personId) {
+	public ModelAndView deletePerson(HttpServletRequest request, @PathVariable String personId) throws InvalidApiResponseException {
 		ModelAndView model = new ModelAndView("redirect:/transaction");
 		personService.deletePerson(personId);
 		return model;

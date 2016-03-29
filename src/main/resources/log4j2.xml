@@ -6,10 +6,10 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Root level="INFO">
+		<Root level="DEBUG">
 			<AppenderRef ref="STDOUT" />
 		</Root>
-		<Logger name="com.springWorkout.service" level="INFO"/>
-		<Logger name="org.hibernate.SQL" level="INFO"/>
+		<Logger name="com.springWorkout.service" level="DEBUG"/>
+		<Logger name="org.hibernate.SQL" level="DEBUG"/>
 	</Loggers>
 </Configuration>

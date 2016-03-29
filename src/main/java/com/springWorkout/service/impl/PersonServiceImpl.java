@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.springWorkout.dao.PersonDao;
 import com.springWorkout.domain.ApiLog;
 import com.springWorkout.domain.Person;
+import com.springWorkout.exceptions.InvalidApiResponseException;
 import com.springWorkout.service.ApiLogService;
 import com.springWorkout.service.PersonService;
 
@@ -28,7 +29,7 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void savePerson(Person person, String requestString) {
+	public void savePerson(Person person, String requestString) throws InvalidApiResponseException {
 		ApiLog apiLog = apiLogService.saveApiRequest(requestString);
 		personDao.savePerson(person);
 		apiLogService.saveApiResponse(apiLog, person.toString());
@@ -40,7 +41,7 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void deletePerson(String id) {
+	public void deletePerson(String id) throws InvalidApiResponseException {
 		Person p = new Person.Builder().id(id).build();
 		ApiLog apiLog = apiLogService.saveApiRequest(id);
 		personDao.delete(p);
