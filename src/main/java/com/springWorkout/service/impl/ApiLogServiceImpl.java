@@ -36,4 +36,22 @@ public class ApiLogServiceImpl implements ApiLogService {
 		throw new InvalidApiResponseException();
 	}
 
+	@Override
+	public void logResponse(ApiLog apiLog, String response) throws InvalidApiResponseException {
+		apiLog.setResponse(response);
+		apiLog.setResponseDate(new Date());
+		apiLogDao.saveOrUpdate(apiLog);
+		throw new InvalidApiResponseException();
+	}
+
+	@Override
+	public void mandatoryResponse() {
+
+	}
+
+	@Override
+	public void neverResponse() {
+
+	}
+
 }

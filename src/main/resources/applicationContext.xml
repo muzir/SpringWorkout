@@ -47,7 +47,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<tx:advice id="txAdvicePerson">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
-			<tx:method name="save*" read-only="false" propagation="REQUIRES_NEW" />
+			<tx:method name="save*" read-only="false" propagation="REQUIRED" />
 			<tx:method name="delete*" read-only="false" />
 		</tx:attributes>
 	</tx:advice>
@@ -55,7 +55,13 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="save*" read-only="false"
-				rollback-for="InvalidApiResponseException" propagation="REQUIRES_NEW"/>
+				rollback-for="InvalidApiResponseException" propagation="REQUIRES_NEW" />
+			<tx:method name="log*" read-only="false"
+				rollback-for="InvalidApiResponseException" propagation="REQUIRED" />
+			<tx:method name="mandatory*" read-only="false"
+				propagation="MANDATORY" />
+			<tx:method name="never*" read-only="false"
+				propagation="NEVER" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>

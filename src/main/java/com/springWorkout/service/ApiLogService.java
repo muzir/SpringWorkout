@@ -13,4 +13,9 @@ public interface ApiLogService {
 
 	void saveApiResponse(ApiLog apiLog, String response) throws InvalidApiResponseException;
 
+	void logResponse(ApiLog apiLog, String response) throws InvalidApiResponseException;
+
+	void mandatoryResponse() throws InvalidApiResponseException;
+
+	void neverResponse() throws InvalidApiResponseException;
 }
