@@ -21,7 +21,6 @@ public class ApiLogServiceImpl implements ApiLogService {
 	private ApiLogDao apiLogDao;
 
 	public ApiLog saveApiRequest(String request) {
-
 		SecureRandom r = new SecureRandom();
 		String apiLogId = String.valueOf(r.nextInt());
 		ApiLog apiLog = new ApiLog.Builder().id(apiLogId).request(request).requestDate(new Date()).build();
