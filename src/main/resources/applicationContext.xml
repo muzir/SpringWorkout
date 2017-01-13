@@ -13,12 +13,10 @@ http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.1.xsd
 http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop.xsd">
-	<bean id="clickPrototype" scope="prototype" class="com.springWorkout.domain.Click">
-	</bean>
-	<bean id="clickSingleton" scope="singleton" class="com.springWorkout.domain.Click">
-	</bean>
+	
 	<context:component-scan base-package="com.springWorkout.dao"></context:component-scan>
 	<context:component-scan base-package="com.springWorkout.service"></context:component-scan>
+	<context:component-scan base-package="com.springWorkout.config"></context:component-scan>
 	<!-- See http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html for details -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"
 		destroy-method="close">
@@ -47,7 +45,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 	<tx:advice id="txAdvicePerson">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
-			<tx:method name="save*" read-only="false" propagation="REQUIRED" />
+			<tx:method name="save*" read-only="false" propagation="REQUIRES_NEW" />
 			<tx:method name="delete*" read-only="false" />
 		</tx:attributes>
 	</tx:advice>
@@ -55,7 +53,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true" />
 			<tx:method name="save*" read-only="false"
-				rollback-for="InvalidApiResponseException" propagation="REQUIRES_NEW" />
+				rollback-for="InvalidApiResponseException" propagation="REQUIRED" />
 			<tx:method name="log*" read-only="false"
 				rollback-for="InvalidApiResponseException" propagation="REQUIRED" />
 			<tx:method name="mandatory*" read-only="false"
@@ -90,7 +88,7 @@ http://www.springframework.org/schema/aop/spring-aop.xsd">
 				<!-- update: update the schema. -->
 				<!-- create: creates the schema, destroying previous data. -->
 				<!-- create-drop: drop the schema at the end of the session. -->
-				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
 				<prop key="show_sql">false</prop>
 				<prop key="hibernate.validator.autoregister_listeners">true</prop>
 			</props>
