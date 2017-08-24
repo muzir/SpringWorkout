@@ -1,7 +1,7 @@
 package com.springWorkout.service;
 
 import com.springWorkout.domain.ApiLog;
-import com.springWorkout.exceptions.InvalidApiResponseException;
+import com.springWorkout.exceptions.ChechedException;
 
 /**
  * @author erhun.baycelik
@@ -9,13 +9,14 @@ import com.springWorkout.exceptions.InvalidApiResponseException;
  */
 public interface ApiLogService {
 
-	ApiLog saveApiRequest(String request);
+	ApiLog saveApiRequest(String request) throws ChechedException;
 
-	void saveApiResponse(ApiLog apiLog, String response) throws InvalidApiResponseException;
+	void saveResponseRequiresNew(ApiLog apiLog, String response);
 
-	void logResponse(ApiLog apiLog, String response) throws InvalidApiResponseException;
+	void saveResponseRequired(ApiLog apiLog, String response);
 
-	void mandatoryResponse() throws InvalidApiResponseException;
+	void saveResponseMandatory(ApiLog apiLog, String response);
 
-	void neverResponse() throws InvalidApiResponseException;
+	void saveResponseNever(ApiLog apiLog, String response);
+
 }

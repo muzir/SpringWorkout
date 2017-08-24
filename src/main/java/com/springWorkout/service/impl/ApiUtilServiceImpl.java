@@ -1,12 +1,10 @@
 package com.springWorkout.service.impl;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.springWorkout.service.ApiUtilService;
 import org.springframework.stereotype.Service;
 
-import com.springWorkout.service.ApiUtilService;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * @author erhun.baycelik

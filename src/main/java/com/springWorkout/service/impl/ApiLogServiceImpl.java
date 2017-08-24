@@ -1,15 +1,16 @@
 package com.springWorkout.service.impl;
 
-import java.security.SecureRandom;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.springWorkout.dao.ApiLogDao;
 import com.springWorkout.domain.ApiLog;
-import com.springWorkout.exceptions.InvalidApiResponseException;
+import com.springWorkout.exceptions.UnCheckedException;
 import com.springWorkout.service.ApiLogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.security.SecureRandom;
+import java.util.Date;
 
 /**
  * @author erhun.baycelik
@@ -17,9 +18,15 @@ import com.springWorkout.service.ApiLogService;
  */
 @Service
 public class ApiLogServiceImpl implements ApiLogService {
-	@Autowired
+
 	private ApiLogDao apiLogDao;
 
+	@Autowired
+	public ApiLogServiceImpl(ApiLogDao _apiLogDao) {
+		apiLogDao = _apiLogDao;
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 	public ApiLog saveApiRequest(String request) {
 		SecureRandom r = new SecureRandom();
 		String apiLogId = String.valueOf(r.nextInt());
@@ -28,29 +35,29 @@ public class ApiLogServiceImpl implements ApiLogService {
 		return apiLog;
 	}
 
-	public void saveApiResponse(ApiLog apiLog, String response) throws InvalidApiResponseException {
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+	public void saveResponseRequiresNew(ApiLog apiLog, String response) {
+		saveResponse(apiLog, response);
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
+	public void saveResponseRequired(ApiLog apiLog, String response) {
+		saveResponse(apiLog, response);
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.MANDATORY)
+	public void saveResponseMandatory(ApiLog apiLog, String response) {
+		saveResponse(apiLog, response);
+	}
+
+	@Transactional(readOnly = false, propagation = Propagation.NEVER)
+	public void saveResponseNever(ApiLog apiLog, String response) {
+		saveResponse(apiLog, response);
+	}
+
+	private void saveResponse(ApiLog apiLog, String response) {
 		apiLog.setResponse(response);
 		apiLog.setResponseDate(new Date());
 		apiLogDao.saveOrUpdate(apiLog);
-		throw new InvalidApiResponseException();
 	}
-
-	@Override
-	public void logResponse(ApiLog apiLog, String response) throws InvalidApiResponseException {
-		apiLog.setResponse(response);
-		apiLog.setResponseDate(new Date());
-		apiLogDao.saveOrUpdate(apiLog);
-		throw new InvalidApiResponseException();
-	}
-
-	@Override
-	public void mandatoryResponse() {
-
-	}
-
-	@Override
-	public void neverResponse() {
-
-	}
-
 }

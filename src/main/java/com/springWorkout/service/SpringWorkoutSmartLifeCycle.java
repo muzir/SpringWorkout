@@ -1,17 +1,12 @@
 package com.springWorkout.service;
 
+import com.springWorkout.quartz.LogConnectionPool;
+import org.quartz.*;
+import org.springframework.context.SmartLifecycle;
+
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
-
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.SimpleTrigger;
-import org.springframework.context.SmartLifecycle;
-
-import com.springWorkout.quartz.LogConnectionPool;
 
 public class SpringWorkoutSmartLifeCycle implements SmartLifecycle {
 	private Scheduler sched;

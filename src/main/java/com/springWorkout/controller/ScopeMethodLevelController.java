@@ -1,15 +1,14 @@
 package com.springWorkout.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.springWorkout.domain.Click;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springWorkout.domain.Click;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author erhun.baycelik <br>
@@ -18,7 +17,13 @@ import com.springWorkout.domain.Click;
 @Controller
 @RequestMapping("/scope/methodLevel")
 public class ScopeMethodLevelController {
-	ApplicationContext beans = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+
+	private final ApplicationContext beans;
+
+	@Autowired
+	private ScopeMethodLevelController(ApplicationContext applicationContext) {
+		beans = applicationContext;
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView get(HttpServletRequest request) {

@@ -1,10 +1,9 @@
 package com.springWorkout.service.impl;
 
-import org.springframework.stereotype.Service;
-
 import com.springWorkout.domain.Person;
 import com.springWorkout.responseObject.ConcurrencyResponseObject;
 import com.springWorkout.service.ThirdPartyService;
+import org.springframework.stereotype.Service;
 
 /**
  * @author erhun.baycelik

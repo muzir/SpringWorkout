@@ -1,14 +1,13 @@
 package com.springWorkout.dao;
 
-import java.util.List;
-
+import com.springWorkout.domain.Person;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.springWorkout.domain.Person;
+import java.util.List;
 
 /**
  * @author erhun.baycelik

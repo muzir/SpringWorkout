@@ -1,11 +1,10 @@
 package com.springWorkout.quartz;
 
+import com.springWorkout.service.SpringInjectQuartzJobBean;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.springWorkout.service.SpringInjectQuartzJobBean;
 
 public class LogConnectionPool implements Job {
 

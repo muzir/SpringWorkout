@@ -1,11 +1,10 @@
 package com.springWorkout.dao;
 
+import com.springWorkout.domain.ApiLog;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.springWorkout.domain.ApiLog;
 
 /**
  * @author erhun.baycelik

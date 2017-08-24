@@ -1,11 +1,10 @@
 package com.springWorkout.service;
 
+import com.springWorkout.domain.Person;
+import com.springWorkout.responseObject.ConcurrencyResponseObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.springWorkout.domain.Person;
-import com.springWorkout.responseObject.ConcurrencyResponseObject;
 
 /**
  * @author erhun.baycelik

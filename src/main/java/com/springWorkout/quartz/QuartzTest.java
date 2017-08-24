@@ -1,17 +1,7 @@
 package com.springWorkout.quartz;
 
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import static org.quartz.TriggerBuilder.newTrigger;
-
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.SimpleTrigger;
-
 public class QuartzTest {
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		try {
 			SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
 
@@ -37,5 +27,5 @@ public class QuartzTest {
 		} catch (SchedulerException se) {
 			se.printStackTrace();
 		}
-	}
+	}*/
 }

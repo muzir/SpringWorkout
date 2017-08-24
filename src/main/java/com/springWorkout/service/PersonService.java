@@ -1,22 +1,18 @@
 package com.springWorkout.service;
 
-import java.util.List;
-
 import com.springWorkout.domain.Person;
-import com.springWorkout.exceptions.InvalidApiResponseException;
+import com.springWorkout.exceptions.ChechedException;
+
+import java.util.List;
 
 /**
  * @author erhun.baycelik
  *
  */
 public interface PersonService {
-	Person getPerson(String id);
+	void savePerson(Person person, String requestString) throws ChechedException;
 
-	void savePerson(Person person, String requestString) throws InvalidApiResponseException;
-
-	void updatePerson(String id);
-
-	void deletePerson(String id) throws InvalidApiResponseException;
+	void deletePerson(String id) throws ChechedException;
 
 	List<Person> getAllPerson();
 }

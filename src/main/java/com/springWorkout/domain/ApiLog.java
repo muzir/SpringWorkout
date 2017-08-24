@@ -1,10 +1,9 @@
 package com.springWorkout.domain;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @author erhun.baycelik

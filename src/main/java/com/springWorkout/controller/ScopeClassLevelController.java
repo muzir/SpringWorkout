@@ -1,7 +1,6 @@
 package com.springWorkout.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.springWorkout.domain.Click;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.springWorkout.domain.Click;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author erhun.baycelik </br>
@@ -29,8 +28,6 @@ public class ScopeClassLevelController {
 	@Autowired
 	@Qualifier("clickPrototype")
 	private Click clickPrototype;
-
-	ApplicationContext beans = new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView get(HttpServletRequest request) {

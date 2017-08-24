@@ -1,31 +1,34 @@
 package com.springWorkout.controller;
 
-import java.security.SecureRandom;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.springWorkout.domain.Person;
+import com.springWorkout.responseObject.ConcurrencyResponseObject;
+import com.springWorkout.service.ThirdPartyService;
+import com.springWorkout.service.ThirdPartyServiceFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.springWorkout.domain.Person;
-import com.springWorkout.responseObject.ConcurrencyResponseObject;
-import com.springWorkout.service.ThirdPartyService;
-import com.springWorkout.service.ThirdPartyServiceFactory;
+import javax.servlet.http.HttpServletRequest;
+import java.security.SecureRandom;
 
 /**
  * @author erhun.baycelik
  *
  */
 @Controller
-@RequestMapping(value = "concurrency")
+@RequestMapping("/concurrency")
 public class ConcurrenceController {
-	@Autowired
 	private ThirdPartyService thirdPartyService;
+	private ThirdPartyServiceFactory thirdPartyServiceFactory;
 
 	@Autowired
-	private ThirdPartyServiceFactory thirdPartyServiceFactory;
+	public ConcurrenceController(ThirdPartyService _thirdPartyService,
+			ThirdPartyServiceFactory _thirdPartyServiceFactory) {
+		thirdPartyService = _thirdPartyService;
+		thirdPartyServiceFactory = _thirdPartyServiceFactory;
+
+	}
 
 	@ResponseBody
 	public ConcurrencyResponseObject doPost(HttpServletRequest request) {

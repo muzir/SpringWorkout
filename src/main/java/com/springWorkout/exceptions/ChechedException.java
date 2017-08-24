@@ -4,11 +4,11 @@ package com.springWorkout.exceptions;
  * @author erhun.baycelik
  *
  */
-public class InvalidApiResponseException extends Exception{
+public class ChechedException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 }
