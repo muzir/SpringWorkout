@@ -31,13 +31,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 
-//	@Bean
-//	public HibernateTransactionManager transactionManager() {
-//		HibernateTransactionManager txManager = new HibernateTransactionManager();
-//		txManager.setSessionFactory(sessionFactory().getObject());
-//		return txManager;
-//	}
-
 	@Bean
 	public HibernateJpaSessionFactoryBean sessionFactory() {
 		return new HibernateJpaSessionFactoryBean();

@@ -32,7 +32,6 @@ public class ConcurrenceController {
 
 	@ResponseBody
 	public ConcurrencyResponseObject doPost(HttpServletRequest request) {
-		/** TODO Create request Log and write to DB */
 		String isThirdPartyApiCall = request.getParameter("thirdPartApiCall");
 		String requestId = request.getParameter("requestId");
 		SecureRandom sr = new SecureRandom();
@@ -45,7 +44,6 @@ public class ConcurrenceController {
 		concurrencyResponseObject.setRequestId(requestId);
 		concurrencyResponseObject.setResponseCode("00");
 		concurrencyResponseObject.setResponseMessage("Sucessfully");
-		/** TODO Create Response Log write to DB */
 		return concurrencyResponseObject;
 	}
 }
