@@ -5,46 +5,24 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-/**
- * @author erhun.baycelik
- */
 @Configuration
-public class AppConfig extends WebMvcConfigurerAdapter {
+public class AppConfig {
 
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
 
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/").setCachePeriod(31556926);
-	}
+    @Bean
+    @Scope("prototype")
+    public Click clickPrototype() {
+        return new Click();
+    }
 
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigIn() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
-
-	@Bean
-	public HibernateJpaSessionFactoryBean sessionFactory() {
-		return new HibernateJpaSessionFactoryBean();
-	}
-
-	@Bean
-	@Scope("prototype")
-	public Click clickPrototype() {
-		return new Click();
-	}
-
-	@Bean
-	@Scope("singleton")
-	public Click clickSingleton() {
-		return new Click();
-	}
+    @Bean
+    @Scope("singleton")
+    public Click clickSingleton() {
+        return new Click();
+    }
 }

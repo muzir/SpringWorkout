@@ -3,20 +3,17 @@ package com.springWorkout.service;
 import com.springWorkout.domain.ApiLog;
 import com.springWorkout.exceptions.ChechedException;
 
-/**
- * @author erhun.baycelik
- *
- */
+
 public interface ApiLogService {
 
-	ApiLog saveApiRequest(String request) throws ChechedException;
+    ApiLog saveApiRequest(String request) throws ChechedException;
 
-	void saveResponseRequiresNew(ApiLog apiLog, String response);
+    void saveResponseRequiresNew(ApiLog apiLog, String response);
 
-	void saveResponseRequired(ApiLog apiLog, String response);
+    void saveResponseRequired(ApiLog apiLog, String response);
 
-	void saveResponseMandatory(ApiLog apiLog, String response);
+    void saveResponseMandatory(ApiLog apiLog, String response);
 
-	void saveResponseNever(ApiLog apiLog, String response);
+    void saveResponseNever(ApiLog apiLog, String response);
 
 }

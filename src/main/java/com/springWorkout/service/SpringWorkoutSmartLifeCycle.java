@@ -1,74 +1,79 @@
 package com.springWorkout.service;
 
-import com.springWorkout.quartz.LogConnectionPool;
-import org.quartz.*;
-import org.springframework.context.SmartLifecycle;
-
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import static org.quartz.TriggerBuilder.newTrigger;
 
+import com.springWorkout.quartz.LogConnectionPool;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.SimpleTrigger;
+import org.springframework.context.SmartLifecycle;
+
 public class SpringWorkoutSmartLifeCycle implements SmartLifecycle {
-	private Scheduler sched;
 
-	@Override
-	public void start() {
-		try {
-			SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
-			sched = schedFact.getScheduler();
+    private Scheduler sched;
 
-			sched.start();
+    @Override
+    public void start() {
+        try {
+            SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
+            sched = schedFact.getScheduler();
 
-			// define the job and tie it to our LogConnectionPool class
-			JobDetail jobDetail = newJob(LogConnectionPool.class)
-					.withIdentity("LogConnectionPool", "groupLogConnectionPool").build();
+            sched.start();
 
-			// Trigger the job to run now, and then every 40 seconds
-			SimpleTrigger trigger = newTrigger().withIdentity("LogConnectionPoolTrigger", "groupLogConnectionPool")
-					.startNow().withSchedule(simpleSchedule().withIntervalInSeconds(10).repeatForever()).build();
+            // define the job and tie it to our LogConnectionPool class
+            JobDetail jobDetail = newJob(LogConnectionPool.class)
+                .withIdentity("LogConnectionPool", "groupLogConnectionPool").build();
 
-			// Tell quartz to schedule the job using our trigger
-			sched.scheduleJob(jobDetail, trigger);
+            // Trigger the job to run now, and then every 40 seconds
+            SimpleTrigger trigger = newTrigger().withIdentity("LogConnectionPoolTrigger", "groupLogConnectionPool")
+                .startNow().withSchedule(simpleSchedule().withIntervalInSeconds(10).repeatForever()).build();
 
-		} catch (SchedulerException se) {
-			se.printStackTrace();
-		}
-		;
-	}
+            // Tell quartz to schedule the job using our trigger
+            sched.scheduleJob(jobDetail, trigger);
 
-	@Override
-	public void stop() {
-		// TODO Auto-generated method stub
-	}
+        } catch (SchedulerException se) {
+            se.printStackTrace();
+        }
+        ;
+    }
 
-	@Override
-	public boolean isRunning() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public void stop() {
+        // TODO Auto-generated method stub
+    }
 
-	@Override
-	public int getPhase() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public boolean isRunning() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	@Override
-	public boolean isAutoStartup() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+    @Override
+    public int getPhase() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 
-	@Override
-	public void stop(Runnable callback) {
-		// try {
-		// if (sched != null && !sched.isShutdown()) {
-		// sched.shutdown();
-		// }
-		// } catch (SchedulerException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-	}
+    @Override
+    public boolean isAutoStartup() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public void stop(Runnable callback) {
+        // try {
+        // if (sched != null && !sched.isShutdown()) {
+        // sched.shutdown();
+        // }
+        // } catch (SchedulerException e) {
+        // // TODO Auto-generated catch block
+        // e.printStackTrace();
+        // }
+    }
 
 }

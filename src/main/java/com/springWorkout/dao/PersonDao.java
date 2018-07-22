@@ -1,37 +1,42 @@
 package com.springWorkout.dao;
 
 import com.springWorkout.domain.Person;
-import org.hibernate.Criteria;
+import java.util.List;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
-/**
- * @author erhun.baycelik
- *
- */
 @Repository
 public class PersonDao {
-	@Autowired
-	private SessionFactory sessionFactory;
 
-	public void savePerson(Person person) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(person);
-	}
+    @Autowired
+    private EntityManagerFactory entityManagerFactory;
 
-	@SuppressWarnings("unchecked")
-	public List<Person> getPersons() {
-		Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Person.class).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
-	}
+    public void savePerson(Person person) {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+        session.saveOrUpdate(person);
+    }
 
-	public void delete(Person person) {
-		Session session = sessionFactory.getCurrentSession();
-		session.delete(person);
+    @SuppressWarnings("unchecked")
+    public List<Person> getPersons() {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
 
-	}
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery criteria = builder.createQuery(Person.class);
+        Root contactRoot = criteria.from(Person.class);
+        criteria.select(contactRoot);
+        return session.createQuery(criteria).getResultList();
+    }
+
+    public void delete(Person person) {
+        Session session = entityManagerFactory.unwrap(SessionFactory.class).openSession();
+        session.delete(person);
+
+    }
 }

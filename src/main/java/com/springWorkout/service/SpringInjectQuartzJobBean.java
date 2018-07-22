@@ -15,10 +15,10 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  * quartz-job-in-spring
  * </p>
  *
- * @author Erhun Baycelik <Erhun.Baycelik@asseco-see.com.tr>
  */
 public class SpringInjectQuartzJobBean {
-	public void injectQuartzJobToSpringApplicationContext(Object obj) {
-		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(obj);
-	}
+
+    public void injectQuartzJobToSpringApplicationContext(Object obj) {
+        SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(obj);
+    }
 }
