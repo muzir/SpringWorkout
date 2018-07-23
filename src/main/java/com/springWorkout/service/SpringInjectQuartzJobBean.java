@@ -14,7 +14,6 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
  * http://stackoverflow.com/questions/6990767/inject-bean-reference-into-a-
  * quartz-job-in-spring
  * </p>
- *
  */
 public class SpringInjectQuartzJobBean {
 

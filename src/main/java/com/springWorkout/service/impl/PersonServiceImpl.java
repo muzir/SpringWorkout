@@ -26,10 +26,10 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void savePerson(Person person, String requestString) throws ChechedException {
         ApiLog apiLog = apiLogService.saveApiRequest(requestString);
-        personDao.savePerson(person);
+        personDao.save(person);
         apiLogService.saveResponseRequired(apiLog, person.toString());
     }
 
@@ -44,9 +44,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Person> getAllPerson() {
-        return personDao.getPersons();
+        return personDao.findAll();
     }
 
 }

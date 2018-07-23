@@ -16,6 +16,10 @@ public class ApiLog {
     private Date requestDate;
     private Date responseDate;
 
+    public ApiLog() {
+        super();
+    }
+
     private ApiLog(Builder builder) {
         this.request = builder.request;
         this.response = builder.response;

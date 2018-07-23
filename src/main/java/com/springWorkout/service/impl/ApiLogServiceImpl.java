@@ -53,6 +53,6 @@ public class ApiLogServiceImpl implements ApiLogService {
     private void saveResponse(ApiLog apiLog, String response) {
         apiLog.setResponse(response);
         apiLog.setResponseDate(new Date());
-        apiLogDao.saveOrUpdate(apiLog);
+        apiLogDao.save(apiLog);
     }
 }
